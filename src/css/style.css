@@ -1,0 +1,22 @@
+html *::-webkit-scrollbar {
+    width: 6px;
+    height: 4px;
+    background: transparent;
+}
+
+@media (min-width: 1024px) {
+    html *::-webkit-scrollbar {
+        width: 8px;
+        height: 6px;
+    }
+}
+
+html *::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, .3);
+}
+
+.ce-nav-title {
+    top: 4px;
+    position: relative;
+    font-size: 1.5rem;
+}
