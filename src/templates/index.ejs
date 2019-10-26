@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html>
 <% const PAGE = 'index'; %>
-<%- include('includes/head') %>
+
+<head>
+    <%- include('includes/head') %>
+</head>
 
 <body class="sk-bg-gray">
     <%- include('includes/github-corner') %>
     <%- include('includes/navbar') %>
-    <div class="container sk-mt-8">
+    <div class="container sk-my-8">
         <div class="card sk-center" style="max-width: 500px">
             <div class="card-body">
                 <h2 class="h4 text-center sk-mb-4">使用须知</h2>
@@ -18,12 +21,13 @@
                 </div>
             </div>
             <div class="card-footer text-muted">
-                <div style="text-align: right;">
-                    <a href="/intro" class="btn sk-px-4 btn-primary">开始使用</a>
+                <div class="text-right">
+                    <a href="/general" class="btn sk-px-4 btn-primary">开始使用</a>
                 </div>
             </div>
         </div>
     </div>
+    <%- include('includes/modal') %>
     <%- include('includes/footer') %>
 </body>
 

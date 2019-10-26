@@ -20,3 +20,29 @@ html *::-webkit-scrollbar-thumb {
     position: relative;
     font-size: 1.5rem;
 }
+
+.bs-stepper {
+    overflow: scroll;
+}
+
+.bs-stepper .step-trigger:not(:disabled):not(.disabled) {
+    cursor: default;
+}
+
+.bs-stepper .step-trigger:hover {
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.bs-stepper .step-trigger:focus {
+    color: #6c757d;
+    outline: 0;
+}
+
+.bs-stepper .active .bs-stepper-label {
+    color: #007bff;
+}
+
+.ce-card-docs p {
+    margin-bottom: .3rem;
+}
