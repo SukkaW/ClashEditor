@@ -93,4 +93,56 @@
         document.getElementById('vmess-form').reset();
         $('#vmess-helper').modal('hide')
     })
+
+    const get = (url, type) =>
+        fetch(url, { method: 'GET' }).then((resp) => {
+            if (type === 'text')
+                return Promise.all([resp.ok, resp.status, resp.text(), resp.headers]);
+            else {
+                return Promise.all([resp.ok, resp.status, resp.json(), resp.headers]);
+            }
+        }).then(([ok, status, data, headers]) => {
+            if (ok) {
+                return {
+                    ok,
+                    status,
+                    data,
+                    headers
+                }
+            } else {
+                throw new Error(JSON.stringify(json.error));
+            }
+        }).catch(error => {
+            throw error;
+        })
+
+    try {
+        document.getElementById('ce-proxy-btn-import-online').addEventListener('click', () => {
+            const url = getValue('proxy-online-url');
+            get(`https://cors-anywhere.herokuapp.com/${url}`, 'text')
+                .then(resp => {
+                    const onlineConfig = jsyaml.load(resp.data);
+                    if (onlineConfig.Proxy && onlineConfig.Proxy !== '') {
+                        proxyCodeEditor.setValue(`Proxy:\n${jsyaml.dump(onlineConfig.Proxy)}`);
+                    } else {
+                        throw new Error(`从 ${url} 下载的文件中没有找到 Proxy 字段或 Proxy 字段为空！`);
+                    }
+                })
+                .then(resp => {
+                    $('#online-helper').modal('hide');
+                })
+                .catch(err => {
+                    throw new Error(err);
+                })
+        })
+    } catch (err) {
+        Modal(
+            '这看起来不太正常',
+            `<p>Clash Editor 不能解析您提交的在线托管配置</p>
+            <p>报错信息如下所示：</p>
+            <p><code>${err}</code></p>`
+        )
+    }
+
+
 })();

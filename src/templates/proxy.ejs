@@ -26,6 +26,7 @@
             <div class="card-body">
                 <button class="btn btn-info sk-px-4 sk-my-1" data-toggle="modal" data-target="#ss-helper">Shadowsocks 添加向导</button>
                 <button class="btn btn-info sk-px-4 sk-my-1" data-toggle="modal" data-target="#vmess-helper">Vmess 添加向导</button>
+                <button class="btn btn-info sk-px-4 sk-my-1" data-toggle="modal" data-target="#online-helper">托管订阅 添加向导</button>
             </div>
         </div>
         <div class="card sk-center sk-mt-4">
@@ -223,6 +224,27 @@
                 </div>
                 <div class="modal-footer">
                     <button form="vmess-form" type="submit" class="btn btn-primary">确认</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="online-helper" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-title">托管配置添加向导</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="modal-body">
+                    <p>您可以使用「托管配置添加向导」从现有的托管订阅中获取节点信息。「托管配置添加向导」会通过 <code>cors-anywhere.herokuapp.com</code> 请求 URL，仅支持 YAML 格式的托管订阅，只有 <code>Proxy</code> 相关信息会被导入。</p>
+                    <input type="text" class="form-control" id="proxy-online-url" placeholder="https://example.com/path/to/clash.yaml">
+                </div>
+                <div class="modal-footer">
+                    <button id="ce-proxy-btn-import-online" type="button" class="btn btn-primary">导入</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
                 </div>
             </div>
