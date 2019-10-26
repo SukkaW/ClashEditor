@@ -15,7 +15,7 @@ const setLS = (key, value) => {
     } catch (o) {
         Modal(
             '这看起来不太正常',
-            `<p>你的浏览器不支持 localStorage，因此无法继续使用 ClashEditor</p>
+            `<p>您的浏览器不支持 localStorage，因此无法继续使用 ClashEditor</p>
             <p>报错信息如下所示：</p>
             <p><code>${o}</code></p>`
         )

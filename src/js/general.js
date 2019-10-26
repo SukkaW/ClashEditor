@@ -19,18 +19,18 @@
             try {
                 if (generalConfig['port'] && generalConfig['socks-port'] && typeof generalConfig['allow-lan'] === 'boolean') {
                     setLS('clashEditor:config:general', generalCodeEditor.getValue());
-                    msgEl.innerHTML = `<span class="text-success">你的 General 配置符合要求，你可以「继续」下一步了</span>`;
+                    msgEl.innerHTML = `<span class="text-success">您的 General 配置符合要求，您可以「继续」下一步了</span>`;
                     document.getElementById('ce-general-btn-continue').classList.remove('disabled');
                     document.getElementById('ce-general-btn-continue').removeAttribute('disabled');
                 } else {
                     Modal(
-                        '你的 General 配置不符合要求！',
+                        '您的 General 配置不符合要求！',
                         `General 配置必须是合法的 YAML 格式，并且必须包括 <code>port</code>，<code>socks-port</code> 和 <code>allow-lan</code>`
                     )
                 }
             } catch (e) {
                 Modal(
-                    '你的 General 配置不符合要求！',
+                    '您的 General 配置不符合要求！',
                     `General 配置必须是合法的 YAML 格式，并且必须包括 <code>port</code>，<code>socks-port</code> 和 <code>allow-lan</code> 属性。`
                 )
             };

@@ -28,25 +28,25 @@
                         });
 
                         setLS('clashEditor:config:proxy', proxyCodeEditor.getValue());
-                        msgEl.innerHTML = `<span class="text-success">你的 Proxy 配置符合要求，你可以「继续」下一步了</span>`;
+                        msgEl.innerHTML = `<span class="text-success">您的 Proxy 配置符合要求，您可以「继续」下一步了</span>`;
                         document.getElementById('ce-proxy-btn-continue').classList.remove('disabled');
                         document.getElementById('ce-proxy-btn-continue').removeAttribute('disabled');
                     } catch (proxyType) {
                         Modal(
-                            '你的 Proxy 配置不符合要求！',
+                            '您的 Proxy 配置不符合要求！',
                             `<code>${proxyType}</code> 不是 ClashEditor 可以辨识的代理类型！`
                         );
                     }
                 } else {
                     Modal(
-                        '你的 Proxy 配置不符合要求！',
+                        '您的 Proxy 配置不符合要求！',
                         `Proxy 配置必须包括 <code>Proxy:</code>，并且 <code>Proxy:</code> 下的内容不能为空！`
                     )
                 }
             } catch (e) {
                 Modal(
-                    '你的 Proxy 配置不符合要求！',
-                    `请检查你的 Proxy 配置并重新输入！`
+                    '您的 Proxy 配置不符合要求！',
+                    `请检查您的 Proxy 配置并重新输入！`
                 )
             };
         } catch (err) {

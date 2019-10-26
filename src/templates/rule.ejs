@@ -21,9 +21,9 @@
         <%- include('includes/steps', { PAGE }) %>
         <div class="card sk-center">
             <div class="card-body">
-                <h2 class="h4 text-center sk-mb-4">Rules 配置</h2>
+                <h2 class="h4 text-center sk-mb-4">Rule 配置</h2>
                 <div class="text-justify ce-card-docs">
-                    <p>在这里，您需要填充 Clash 的规则部分配置。注意规则配置第一行必须为 <code>Proxy:</code>。</p>
+                    <p>在这里，您需要填充 Clash 的规则部分配置。注意规则配置第一行必须为 <code>Rule:</code>。</p>
                     <p>Clash 可以通过域名（<code>DOMAIN-SUFFIX</code> <code>DOMAIN-KEYWORD</code> <code>DOMAIN</code>）、目标 IP（<code>IP-CIDR</code>）、来源 IP（<code>SRC-IP-CIDR</code>）、目标端口（<code>DST-PORT</code>）、来源端口（<code>SRC-PORT</code>）和目标国家（<code>GEOIP</code>）匹配请求，具体如何使用请参考 <a href="https://github.com/Dreamacro/clash#config" target="_blank" rel="external noopenner noreferrer nofollow">Dreamacro 提供的样例</a>。</p>
                     <br>
                     <pre><code class="language-yaml">Rule:
