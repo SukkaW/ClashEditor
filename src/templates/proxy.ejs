@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<% const PAGE = 'proxy'; %>
+
+<head>
+    <%- include('includes/head') %>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.3.0/themes/prism-vs.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror@5.49.2/lib/codemirror.css">
+</head>
+
+<body class="sk-bg-gray">
+    <%- include('includes/github-corner') %>
+    <%- include('includes/navbar') %>
+    <div class="container sk-my-8">
+        <%- include('includes/steps', { PAGE }) %>
+        <div class="card sk-center">
+            <div class="card-body">
+                <h2 class="h4 text-center sk-mb-4">Proxy 配置</h2>
+                <div class="text-justify ce-card-docs">
+                    <p>在这里，您需要填充代理节点配置，注意代理配置第一行必须为 <code>Proxy:</code>。</p>
+                    <p>Clash 支持的代理类型有 <code>ss</code>、<code>vmess</code>、<code>socks5</code>、<code>http</code> 和 <code>snell</code>。</p>
+                    <p>您可以参考 <a href="https://github.com/Dreamacro/clash#config" target="_blank" rel="external noopenner noreferrer nofollow">Dreamacro 提供的样例</a> 直接在代码编辑器中直接添加，也可以使用 ClashEditor 提供的「添加向导」。</p>
+                </div>
+            </div>
+        </div>
+        <div class="card sk-center sk-mt-4">
+            <div class="card-body">
+                <button class="btn btn-info sk-px-4" data-toggle="modal" data-target="#ss-helper">Shadowsocks 添加向导</button>
+                <button class="btn btn-info sk-px-4" data-toggle="modal" data-target="#vmess-helper">Vmess 添加向导</button>
+            </div>
+        </div>
+        <div class="card sk-center sk-mt-4">
+            <div class="card-body">
+                <div class="card" id="proxy-editor"></div>
+                <br>
+                <p id="msg">在编辑器中输入 Proxy 配置后，必须点击「检查」按钮，才可以「继续」下一步。</p>
+            </div>
+            <div class="card-footer text-muted">
+                <div class="text-right">
+                    <button id="ce-proxy-btn-validate" class="btn btn-success sk-px-4">检查</button>
+                    <a id="ce-proxy-btn-continue" href="/" class="btn btn-primary sk-px-4 disabled" disabled>继续</a>
+                    <a href="/general" class="btn btn-dark sk-px-4">返回</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('includes/modal') %>
+
+    <div id="ss-helper" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-title">Shadowsocks 添加向导</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="modal-body">
+                    <form id="ss-form" autocomplete="off">
+                        <div class="form-group row">
+                            <label for="ss-type" class="col-sm-2 col-form-label">type</label>
+                            <div class="col-sm-10">
+                                <input type="text" readonly class="form-control" id="ss-type" value="ss">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="ss-name" class="col-sm-2 col-form-label">name</label>
+                            <div class="col-sm-10">
+                                <input id="ss-name" type="text" class="form-control" placeholder="节点名称">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="ss-server" class="col-sm-2 col-form-label">server</label>
+                            <div class="col-sm-10">
+                                <input id="ss-server" type="text" class="form-control" placeholder="节点 IP 或域名">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="ss-port" class="col-sm-2 col-form-label">port</label>
+                            <div class="col-sm-10">
+                                <input id="ss-port" type="text" class="form-control" placeholder="端口">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="ss-cipher" class="col-sm-2 col-form-label">cipher</label>
+                            <div class="col-sm-10">
+                                <select id="ss-cipher" class="form-control">
+                                    <option disabled selected>节点加密方式</option>
+                                    <option value="aes-128-gcm">aes-128-gcm</option>
+                                    <option value="aes-192-gcm">aes-192-gcm</option>
+                                    <option value="aes-256-gcm">aes-256-gcm</option>
+                                    <option value="aes-128-cfb">aes-128-cfb</option>
+                                    <option value="aes-192-cfb">aes-192-cfb</option>
+                                    <option value="aes-256-cfb">aes-256-cfb</option>
+                                    <option value="aes-128-ctr">aes-128-ctr</option>
+                                    <option value="aes-192-ctr">aes-192-ctr</option>
+                                    <option value="aes-256-ctr">aes-256-ctr</option>
+                                    <option value="rc4-md5">rc4-md5</option>
+                                    <option value="chacha20">chacha20</option>
+                                    <option value="chacha20-ietf">chacha20-ietf</option>
+                                    <option value="xchacha20">xchacha20</option>
+                                    <option value="chacha20-ietf-poly1305">chacha20-ietf-poly1305</option>
+                                    <option value="xchacha20-ietf-poly1305">xchacha20-ietf-poly1305</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="ss-password" class="col-sm-2 col-form-label">password</label>
+                            <div class="col-sm-10">
+                                <input id="ss-password" type="text" class="form-control" placeholder="节点连接密码">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="ss-udp" class="col-sm-2 col-form-label">udp</label>
+                            <div class="col-sm-10">
+                                <select id="ss-udp" class="form-control">
+                                    <option disabled selected>是否启用 UDP</option>
+                                    <option value="true">true</option>
+                                    <option value="false">false</option>
+                                </select>
+                            </div>
+                        </div>
+                        <p class="sk-text-small">「Shadowsocks 添加向导」不支持添加使用 Shadowsocks 插件的节点！<br>请使用添加向导填写相关信息以后手动在编辑器中添加 <code>plugin</code> 和 <code>plugin-opts</code> 字段，或直接使用编辑器填写全部节点信息！</p>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button form="ss-form" type="submit" class="btn btn-primary">确认</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="vmess-helper" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-title">Vmess 添加向导</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="modal-body">
+                    <form id="vmess-form" autocomplete="off">
+                        <div class="form-group row">
+                            <label for="vmess-type" class="col-sm-2 col-form-label">type</label>
+                            <div class="col-sm-10">
+                                <input type="text" readonly class="form-control" id="vmess-type" value="vmess">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="vmess-name" class="col-sm-2 col-form-label">name</label>
+                            <div class="col-sm-10">
+                                <input id="vmess-name" type="text" class="form-control" placeholder="节点名称">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="vmess-server" class="col-sm-2 col-form-label">server</label>
+                            <div class="col-sm-10">
+                                <input id="vmess-server" type="text" class="form-control" placeholder="节点 IP 或域名">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="vmess-port" class="col-sm-2 col-form-label">port</label>
+                            <div class="col-sm-10">
+                                <input id="vmess-port" type="text" class="form-control" placeholder="端口">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="vmess-uuid" class="col-sm-2 col-form-label">uuid</label>
+                            <div class="col-sm-10">
+                                <input id="vmess-uuid" type="text" class="form-control" placeholder="UUID">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="vmess-alterId" class="col-sm-2 col-form-label">alterId</label>
+                            <div class="col-sm-10">
+                                <input id="vmess-alterId" type="text" class="form-control" placeholder="alterId">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="vmess-cipher" class="col-sm-2 col-form-label">cipher</label>
+                            <div class="col-sm-10">
+                                <select id="vmess-cipher" class="form-control">
+                                    <option disabled selected>加密方式</option>
+                                    <option value="auto">auto</option>
+                                    <option value="aes-128-gcm">aes-128-gcm</option>
+                                    <option value="chacha20-poly1305">chacha20-poly1305</option>
+                                    <option value="none">none</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="vmess-udp" class="col-sm-2 col-form-label">udp</label>
+                            <div class="col-sm-10">
+                                <select id="vmess-udp" class="form-control">
+                                    <option disabled selected>是否启用 UDP</option>
+                                    <option value="true">true</option>
+                                    <option value="false">false</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="vmess-tls" class="col-sm-2 col-form-label">tls</label>
+                            <div class="col-sm-10">
+                                <select id="vmess-tls" class="form-control">
+                                    <option disabled selected>是否启用 TLS</option>
+                                    <option value="true">true</option>
+                                    <option value="false">false</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="vmess-tls" class="col-sm-4 col-form-label">skip-cert-verify</label>
+                            <div class="col-sm-8">
+                                <select id="vmess-skip-cert-verify" class="form-control">
+                                    <option value="true">true</option>
+                                    <option value="false">false</option>
+                                </select>
+                            </div>
+                        </div>
+                        <p class="sk-text-small">「Vmess 添加向导」不支持添加 Websocket 相关设置！<br>请使用添加向导填写相关信息以后手动在编辑器中添加相关字段，或直接使用编辑器填写全部节点信息！</p>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button form="vmess-form" type="submit" class="btn btn-primary">确认</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('includes/footer') %>
+    <%- include('includes/footer_for_editor') %>
+    <script src="/js/<%= PAGE %>.js"></script>
+</body>
+
+</html>
