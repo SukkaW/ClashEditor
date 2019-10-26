@@ -33,7 +33,7 @@
     document.getElementById('ce-rule-btn-finish').addEventListener('click', () => {
         setLS('clashEditor:config:rule', ruleEditor.getValue());
         setTimeout(() => {
-            window.location.pathname = '/finish/'
+            window.location.pathname = '/finish'
         }, 500)
     })
 })();
