@@ -23,14 +23,14 @@
         </div>
         <div class="line"></div>
         <div class="step">
-            <button type="button" class="step-trigger" role="tab">
+            <button type="button" class="step-trigger <% if (PAGE === 'rule') { %>active<% } %>" role="tab">
                 <span class="bs-stepper-circle">4</span>
                 <span class="bs-stepper-label">Rule</span>
             </button>
         </div>
         <div class="line"></div>
         <div class="step">
-            <button type="button" class="step-trigger" role="tab">
+            <button type="button" class="step-trigger <% if (PAGE === 'finish') { %>active<% } %>" role="tab">
                 <span class="bs-stepper-circle">5</span>
                 <span class="bs-stepper-label">Finish</span>
             </button>

@@ -9,7 +9,7 @@ function Modal(title = '', body = '', footer = '') {
     $('#modal').modal();
 }
 
-function setLS(key, value) {
+const setLS = (key, value) => {
     try {
         localStorage.setItem(key, value)
     } catch (o) {

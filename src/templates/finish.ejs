@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<% const PAGE = 'finish'; %>
+
+<head>
+    <%- include('includes/head') %>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.3.0/themes/prism-vs.min.css">
+</head>
+
+<body class="sk-bg-gray">
+    <%- include('includes/github-corner') %>
+    <%- include('includes/navbar') %>
+    <div class="container sk-my-8">
+        <%- include('includes/steps', { PAGE }) %>
+        <div class="card sk-center">
+            <div class="card-body">
+                <h2 class="h4 text-center sk-mb-4">编辑完成！</h2>
+                <div class="text-justify ce-card-docs">
+                    <p>您已经成功完成了一份 Clash 配置文件的编辑！您可以预览您的配置文件、下载您的配置文件，或者清除 ClashEditor 保存在您浏览器中的数据</p>
+                </div>
+            </div>
+        </div>
+        <div class="card sk-center sk-mt-4">
+            <div class="card-body">
+                <a href="#" id="finish-download-yaml" class="btn btn-primary btn-block">下载 YAML 配置文件</a>
+                <a href="#" id="finish-download-json" class="btn btn-primary btn-block">下载 JSON 配置文件</a>
+                <button id="finish-clean-cache" class="btn btn-secondary btn-block">清理浏览器缓存</button>
+                <p class="sk-mb-0"><small>您当前配置文件的 General、Proxy、Proxy Group、Rule 都存储在浏览器本地，您下次编辑时会自动还原。如果您不希望浏览器继续存储这些信息，请使用「清理浏览器缓存」。</small></p>
+            </div>
+        </div>
+        <div class="card sk-center sk-mt-4">
+            <div class="card-body">
+                <pre><code id="finish-yml" class="language-yaml"></code></pre>
+            </div>
+        </div>
+    </div>
+    <%- include('includes/modal') %>
+    <%- include('includes/footer') %>
+    <%- include('includes/footer_for_editor') %>
+    <script src="/js/<%= PAGE %>.js"></script>
+</body>
+
+</html>

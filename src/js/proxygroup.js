@@ -108,10 +108,11 @@ window.ClashEditor.select = ['DIRECT', 'REJECT'];
 ${selectedProxy.join('\n')}
   ${httpCheckConfig}`
 
-        window.ClashEditor.select.push(getValue('proxygroup-name'))
+        window.ClashEditor.select.push(getValue('proxygroup-name'));
         proxygroupCodeEditor.setValue(value);
         proxygroupPolicyForm.reset();
         updateProxyGroupList();
+        setLS('clashEditor:config:proxygroup', proxygroupCodeEditor.getValue());
 
         $('#ce-modal-proxygroup').modal('hide');
     })

@@ -16,8 +16,9 @@
             <div class="card-body">
                 <h2 class="h4 text-center sk-mb-4">Proxy Group 配置</h2>
                 <div class="text-justify ce-card-docs">
-                    <p>为了在规则组中使用不同的节点，您需要在这里创建在规则组中使用的策略组。</p>
+                    <p>为了在规则组中使用不同的节点，您需要在这里创建在规则组中使用的策略组，注意策略组配置第一行必须为 <code>Proxy Group:</code>。</p>
                     <p>大部份基于规则的客户端都允许策略组嵌套使用，必须先创建要用于嵌套的策略组，才能在之后的策略组中选用此策略组。</p>
+                    <p>参考 <a href="https://github.com/Dreamacro/clash#config" target="_blank" rel="external noopenner noreferrer nofollow">Dreamacro 提供的样例</a>。</p>
                 </div>
                 <br>
                 <button class="btn btn-info btn-block" data-toggle="modal" data-target="#ce-modal-proxygroup">新增策略组</button>
@@ -29,7 +30,7 @@
             </div>
             <div class="card-footer text-muted">
                 <div class="text-right">
-                    <a id="ce-proxygroup-btn-continue" href="/rules" class="btn btn-primary sk-px-4">继续</a>
+                    <a id="ce-proxygroup-btn-continue" href="/rule" class="btn btn-primary sk-px-4">继续</a>
                     <a href="/proxy" class="btn btn-dark sk-px-4">返回</a>
                 </div>
             </div>
@@ -116,7 +117,7 @@
                         </div>
                         <div id="proxygroup-select-container" class="form-group sk-mt-6">
                             <div style="height: 32px" class="sk-mb-3">
-                                <span class="h6">策略组包含节点</span>
+                                <span class="h6">策略组包含节点（可拖动排序）</span>
                                 <button id="ce-proxygroup-btn-select-opposite" type="button" class="btn btn-info btn-sm sk-ml-1 sk-fr">反选</button>
                                 <button id="ce-proxygroup-btn-select-all" type="button" class="btn btn-info btn-sm sk-ml-1 sk-fr">全选</button>
                             </div>
