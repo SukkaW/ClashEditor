@@ -27,14 +27,18 @@
                 <a href="#" id="finish-download-json" class="btn btn-primary btn-block">下载 JSON 配置文件</a>
                 <button id="finish-clean-cache" class="btn btn-secondary btn-block">清理浏览器缓存</button>
                 <p class="sk-mb-0"><small>您当前配置文件的 General、Proxy、Proxy Group、Rule 都存储在浏览器本地，您下次编辑时会自动还原。如果您不希望浏览器继续存储这些信息，请使用「清理浏览器缓存」。</small></p>
+                <button id="finish-preview-yaml" class="btn btn-info btn-block">预览 Clash 配置文件</button>
+                <p class="sk-mb-0"><small>如果您当前配置文件比较大，则并不建议在浏览器中预览。</small></p>
             </div>
         </div>
-        <div class="sk-center sk-mt-4">
-            <pre><code id="finish-yml" class="language-yaml"></code></pre>
-        </div>
+        <pre class="sk-mt-4"><code id="finish-yml" class="language-yaml"></code></pre>
     </div>
     <%- include('includes/modal') %>
     <%- include('includes/footer') %>
+    <script>
+        window.Prism = window.Prism || {};
+        window.Prism.manual = true;
+    </script>
     <%- include('includes/footer_for_editor') %>
     <script src="/js/<%= PAGE %>.js"></script>
 </body>

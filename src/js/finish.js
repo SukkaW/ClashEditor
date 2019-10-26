@@ -10,7 +10,14 @@ ${proxyConfigLS}
 ${proxygroupConfigLS}
 ${ruleConfigLS}`
 
-    document.getElementById('finish-yml').textContent = finalYAML;
+    const renderYAML = () => {
+        const previewYamlEl = document.getElementById('finish-yml');
+        previewYamlEl.innerHTML = finalYAML;
+        Prism.highlightElement(previewYamlEl, true)
+        document.getElementById('finish-preview-yaml').removeEventListener('click', renderYAML);
+    }
+
+    document.getElementById('finish-preview-yaml').addEventListener('click', renderYAML);
 
     const setDownload = (id, data, name) => {
         const a = document.getElementById(id);
