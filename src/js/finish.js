@@ -36,7 +36,7 @@ ${ruleConfigLS}`
         localStorage.removeItem('clashEditor:config:rule');
         Modal(
             '清理成功！',
-            `ClashEditor 已经清除了您浏览器中保存的 General、Proxy、Proxy Group、Rule 配置！在您下次编辑时这些配置将不会自动恢复！`
+            `Clash Editor 已经清除了您浏览器中保存的 General、Proxy、Proxy Group、Rule 配置！在您下次编辑时这些配置将不会自动恢复！`
         );
     })
 })();

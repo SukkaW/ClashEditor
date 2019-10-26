@@ -4,7 +4,14 @@
 
 <head>
     <%- include('includes/head') %>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.3.0/themes/prism-vs.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror@5.49.2/lib/codemirror.css">
+    <style>
+        .CodeMirror {
+            height: 45rem;
+        }
+
+    </style>
 </head>
 
 <body class="sk-bg-gray">
@@ -12,35 +19,120 @@
     <%- include('includes/navbar') %>
     <div class="container sk-my-8">
         <%- include('includes/steps', { PAGE }) %>
-        <div class="card sk-center">
-            <div class="card-body">
-                <h2 class="h4 text-center sk-mb-4">Proxy 配置</h2>
-                <div class="text-justify ce-card-docs">
-                    <p>在这里，您需要填充代理节点配置，注意代理配置第一行必须为 <code>Proxy:</code>。</p>
-                    <p>Clash 支持的代理类型有 <code>ss</code>、<code>vmess</code>、<code>socks5</code>、<code>http</code> 和 <code>snell</code>。</p>
-                    <p>您可以参考 <a href="https://github.com/Dreamacro/clash#config" target="_blank" rel="external noopenner noreferrer nofollow">Dreamacro 提供的样例</a> 直接在代码编辑器中直接添加，也可以使用 ClashEditor 提供的「添加向导」。</p>
+        <div class="row">
+            <div class="col-lg-6 sk-px-1">
+                <div class="card sk-center">
+                    <div class="card-body">
+                        <h2 class="h4 text-center sk-mb-4">Proxy 配置</h2>
+                        <div class="text-justify ce-card-docs">
+                            <p>在这里，您需要填充代理节点配置，注意代理配置第一行必须为 <code>Proxy:</code>。</p>
+                            <p>Clash 支持的代理类型有 <code>ss</code>、<code>vmess</code>、<code>socks5</code>、<code>http</code> 和 <code>snell</code>。</p>
+                            <p>您可以参考提供的样例配置直接在代码编辑器中直接添加，也可以使用 Clash Editor 提供的「添加向导」。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card sk-center sk-mt-4">
+                    <div class="card-body">
+                        <button class="btn btn-info sk-px-4 sk-my-1" data-toggle="modal" data-target="#ss-helper">Shadowsocks 添加向导</button>
+                        <button class="btn btn-info sk-px-4 sk-my-1" data-toggle="modal" data-target="#vmess-helper">Vmess 添加向导</button>
+                        <button class="btn btn-info sk-px-4 sk-my-1" data-toggle="modal" data-target="#online-helper">托管订阅 添加向导</button>
+                    </div>
+                </div>
+                <div class="card sk-center sk-mt-4">
+                    <div class="card-body">
+                        <div class="card" id="proxy-editor"></div>
+                        <br>
+                        <p id="msg">在编辑器中输入 Proxy 配置后，必须点击「检查」按钮，才可以「继续」下一步。</p>
+                    </div>
+                    <div class="card-footer text-muted">
+                        <div class="text-right">
+                            <button id="ce-proxy-btn-validate" class="btn btn-success sk-px-4">检查</button>
+                            <a id="ce-proxy-btn-continue" href="/proxygroup" class="btn btn-primary sk-px-4 disabled" disabled>继续</a>
+                            <a href="/general" class="btn btn-dark sk-px-4">返回</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="card sk-center sk-mt-4">
-            <div class="card-body">
-                <button class="btn btn-info sk-px-4 sk-my-1" data-toggle="modal" data-target="#ss-helper">Shadowsocks 添加向导</button>
-                <button class="btn btn-info sk-px-4 sk-my-1" data-toggle="modal" data-target="#vmess-helper">Vmess 添加向导</button>
-                <button class="btn btn-info sk-px-4 sk-my-1" data-toggle="modal" data-target="#online-helper">托管订阅 添加向导</button>
-            </div>
-        </div>
-        <div class="card sk-center sk-mt-4">
-            <div class="card-body">
-                <div class="card" id="proxy-editor"></div>
-                <br>
-                <p id="msg">在编辑器中输入 Proxy 配置后，必须点击「检查」按钮，才可以「继续」下一步。</p>
-            </div>
-            <div class="card-footer text-muted">
-                <div class="text-right">
-                    <button id="ce-proxy-btn-validate" class="btn btn-success sk-px-4">检查</button>
-                    <a id="ce-proxy-btn-continue" href="/proxygroup" class="btn btn-primary sk-px-4 disabled" disabled>继续</a>
-                    <a href="/general" class="btn btn-dark sk-px-4">返回</a>
-                </div>
+            <div class="col-lg-6 sk-px-1">
+                <pre class="sk-mt-0 language-yaml"><code class="language-yaml">Proxy:
+# shadowsocks
+# The supported ciphers(encrypt methods):
+#   aes-128-gcm aes-192-gcm aes-256-gcm
+#   chacha20-ietf-poly1305 xchacha20-ietf-poly1305
+#   aes-128-cfb aes-192-cfb aes-256-cfb
+#   aes-128-ctr aes-192-ctr aes-256-ctr
+#   rc4-md5 chacha20 chacha20-ietf xchacha20
+- name: "ss1"
+  type: ss
+  server: server
+  port: 443
+  cipher: chacha20-ietf-poly1305
+  password: "password"
+  # udp: true
+
+- name: "ss2"
+  type: ss
+  server: server
+  port: 443
+  cipher: chacha20-ietf-poly1305
+  password: "password"
+  plugin: v2ray-plugin
+  plugin-opts:
+    mode: websocket # no QUIC now
+    # tls: true # wss
+    # skip-cert-verify: true
+    # host: bing.com
+    # path: "/"
+    # mux: true
+    # headers:
+    #   custom: value
+
+# vmess
+- name: "vmess"
+  type: vmess
+  server: server
+  port: 443
+  uuid: uuid
+  alterId: 32
+  cipher: auto # cipher support auto/aes-128-gcm/chacha20-poly1305/none
+  # udp: true
+  # tls: true
+  # skip-cert-verify: true
+  # network: ws
+  # ws-path: /path
+  # ws-headers:
+  #   Host: v2ray.com
+
+# socks5
+- name: "socks"
+  type: socks5
+  server: server
+  port: 443
+  # username: username
+  # password: password
+  # tls: true
+  # skip-cert-verify: true
+  # udp: true
+
+# http
+- name: "http"
+  type: http
+  server: server
+  port: 443
+  # username: username
+  # password: password
+  # tls: true # https
+  # skip-cert-verify: true
+
+# snell
+- name: "snell"
+  type: snell
+  server: server
+  port: 44046
+  psk: yourpsk
+  # obfs-opts:
+    # mode: http # or tls
+    # host: bing.com</code></pre>
             </div>
         </div>
     </div>

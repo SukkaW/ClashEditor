@@ -4,7 +4,14 @@
 
 <head>
     <%- include('includes/head') %>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.3.0/themes/prism-vs.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror@5.49.2/lib/codemirror.css">
+    <style>
+        .CodeMirror {
+            height: 30rem;
+        }
+
+    </style>
 </head>
 
 <body class="sk-bg-gray">
@@ -12,30 +19,76 @@
     <%- include('includes/navbar') %>
     <div class="container sk-my-8">
         <%- include('includes/steps', { PAGE }) %>
-        <div class="card sk-center">
-            <div class="card-body">
-                <h2 class="h4 text-center sk-mb-4">Proxy Group 配置</h2>
-                <div class="text-justify ce-card-docs">
-                    <p>为了在规则组中使用不同的节点，您需要在这里创建在规则组中使用的策略组，注意策略组配置第一行必须为 <code>Proxy Group:</code>。</p>
-                    <p>大部份基于规则的客户端都允许策略组嵌套使用，必须先创建要用于嵌套的策略组，才能在之后的策略组中选用此策略组。</p>
-                    <p>参考 <a href="https://github.com/Dreamacro/clash#config" target="_blank" rel="external noopenner noreferrer nofollow">Dreamacro 提供的样例</a>。</p>
+        <div class="row">
+            <div class="col-lg-6 sk-px-1">
+                <div class="card sk-center">
+                    <div class="card-body">
+                        <h2 class="h4 text-center sk-mb-4">Proxy Group 配置</h2>
+                        <div class="text-justify ce-card-docs">
+                            <p>为了在规则组中使用不同的节点，您需要在这里创建在规则组中使用的策略组，注意策略组配置第一行必须为 <code>Proxy Group:</code>。如果需要嵌套策略组，必须先创建要用于嵌套的策略组。</p>
+                            <p>您可以使用「新增策略组」，也可以参考提供的样例配置在代码编辑器中手动编写策略组。</p>
+                        </div>
+                        <br>
+                        <button class="btn btn-info btn-block" data-toggle="modal" data-target="#ce-modal-proxygroup">新增策略组</button>
+                    </div>
                 </div>
-                <br>
-                <button class="btn btn-info btn-block" data-toggle="modal" data-target="#ce-modal-proxygroup">新增策略组</button>
-            </div>
-        </div>
-        <div class="card sk-center sk-mt-4">
-            <div class="card-body">
-                <div class="card" id="proxygroup-editor"></div>
-            </div>
-            <div class="card-footer text-muted">
-                <div class="text-right">
-                    <button id="ce-proxygroup-btn-continue" class="btn btn-primary sk-px-4">继续</button>
-                    <a href="/proxy" class="btn btn-dark sk-px-4">返回</a>
+                <div class="card sk-center sk-mt-4">
+                    <div class="card-body">
+                        <div class="card" id="proxygroup-editor"></div>
+                    </div>
+                    <div class="card-footer text-muted">
+                        <div class="text-right">
+                            <button id="ce-proxygroup-btn-continue" class="btn btn-primary sk-px-4">继续</button>
+                            <a href="/proxy" class="btn btn-dark sk-px-4">返回</a>
+                        </div>
+                    </div>
                 </div>
+            </div>
+            <div class="col-lg-6 sk-px-1">
+                <pre class="sk-mt-0 language-yaml"><code class="language-yaml">Proxy Group:
+# url-test select which proxy will be used by benchmarking speed to a URL.
+- name: "auto"
+  type: url-test
+  proxies:
+    - ss1
+    - ss2
+    - vmess1
+  url: 'http://www.gstatic.com/generate_204'
+  interval: 300
+
+# fallback select an available policy by priority. The availability is tested by accessing an URL, just like an auto url-test group.
+- name: "fallback-auto"
+  type: fallback
+  proxies:
+    - ss1
+    - ss2
+    - vmess1
+  url: 'http://www.gstatic.com/generate_204'
+  interval: 300
+
+# load-balance: The request of the same eTLD will be dial on the same proxy.
+- name: "load-balance"
+  type: load-balance
+  proxies:
+    - ss1
+    - ss2
+    - vmess1
+  url: 'http://www.gstatic.com/generate_204'
+  interval: 300
+
+# select is used for selecting proxy or proxy group
+# you can use RESTful API to switch proxy, is recommended for use in GUI.
+- name: Proxy
+  type: select
+  proxies:
+    - ss1
+    - ss2
+    - vmess1
+    - auto</code></pre>
             </div>
         </div>
     </div>
+
     <%- include('includes/modal') %>
 
     <div id="ce-modal-proxygroup" class="modal fade" tabindex="-1" role="dialog">
@@ -134,6 +187,7 @@
             </div>
         </div>
     </div>
+
 
     <%- include('includes/footer') %>
     <%- include('includes/footer_for_editor') %>

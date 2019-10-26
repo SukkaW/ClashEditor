@@ -5,7 +5,7 @@
     if (!proxygroupConfigLS || proxygroupConfigLS === '') {
         Modal(
             '这看起来不太正常',
-            `ClashEditor 无法读取您的 Proxy Group 配置！<br>3 秒后将会回到 Proxy Group 编辑页面！`
+            `Clash Editor 无法读取您的 Proxy Group 配置！<br>3 秒后将会回到 Proxy Group 编辑页面！`
         );
         setTimeout(() => {
             window.location.pathname = '/proxygroup'

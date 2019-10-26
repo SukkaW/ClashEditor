@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror@5.49.2/lib/codemirror.css">
     <style>
         .CodeMirror {
-            height: 40rem;
+            height: 45rem;
         }
 
     </style>
@@ -24,7 +24,7 @@
                 <h2 class="h4 text-center sk-mb-4">Rule 配置</h2>
                 <div class="text-justify ce-card-docs">
                     <p>在这里，您需要填充 Clash 的规则部分配置。注意规则配置第一行必须为 <code>Rule:</code>。</p>
-                    <p>Clash 可以通过域名（<code>DOMAIN-SUFFIX</code> <code>DOMAIN-KEYWORD</code> <code>DOMAIN</code>）、目标 IP（<code>IP-CIDR</code>）、来源 IP（<code>SRC-IP-CIDR</code>）、目标端口（<code>DST-PORT</code>）、来源端口（<code>SRC-PORT</code>）和目标国家（<code>GEOIP</code>）匹配请求，具体如何使用请参考 <a href="https://github.com/Dreamacro/clash#config" target="_blank" rel="external noopenner noreferrer nofollow">Dreamacro 提供的样例</a>。</p>
+                    <p>Clash 可以通过域名（<code>DOMAIN-SUFFIX</code> <code>DOMAIN-KEYWORD</code> <code>DOMAIN</code>）、目标 IP（<code>IP-CIDR</code>）、来源 IP（<code>SRC-IP-CIDR</code>）、目标端口（<code>DST-PORT</code>）、来源端口（<code>SRC-PORT</code>）和目标国家（<code>GEOIP</code>）匹配请求，具体如何使用请参考下面提供的样例。</p>
                     <br>
                     <pre><code class="language-yaml">Rule:
 - DOMAIN-SUFFIX,google.com,[策略组的名称]
@@ -44,8 +44,9 @@
             </div>
         </div>
         <div class="card sk-center sk-mt-4">
-            <div class="card-body">
-                <p class="sk-mb-0">上一步您创建了以下策略组：<span id="rule-proxygroup-list"></span>。您在接下来编写规则组时只能使用这些策略组。</p>
+            <div class="card-body ce-card-docs">
+                <p>上一步您创建了以下策略组：<span id="rule-proxygroup-list"></span>。</p>
+                <p class="sk-mb-0">您在接下来编写规则组时只能使用这些策略组和 <code>DIRECT</code>，<code>REJECT</code>。</p>
             </div>
         </div>
         <div class="card sk-center sk-mt-4">
