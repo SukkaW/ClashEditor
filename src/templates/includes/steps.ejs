@@ -8,10 +8,31 @@
             </button>
         </div>
         <div class="line"></div>
-        <div class="step" data-target="#information-part">
-            <button type="button" class="step-trigger" role="tab">
+        <div class="step">
+            <button type="button" class="step-trigger <% if (PAGE === 'proxy') { %>active<% } %>" role="tab">
                 <span class="bs-stepper-circle">2</span>
-                <span class="bs-stepper-label">Various information</span>
+                <span class="bs-stepper-label">Proxy</span>
+            </button>
+        </div>
+        <div class="line"></div>
+        <div class="step">
+            <button type="button" class="step-trigger <% if (PAGE === 'proxygroup') { %>active<% } %>" role="tab">
+                <span class="bs-stepper-circle">3</span>
+                <span class="bs-stepper-label">Proxy Group</span>
+            </button>
+        </div>
+        <div class="line"></div>
+        <div class="step">
+            <button type="button" class="step-trigger" role="tab">
+                <span class="bs-stepper-circle">4</span>
+                <span class="bs-stepper-label">Rule</span>
+            </button>
+        </div>
+        <div class="line"></div>
+        <div class="step">
+            <button type="button" class="step-trigger" role="tab">
+                <span class="bs-stepper-circle">5</span>
+                <span class="bs-stepper-label">Finish</span>
             </button>
         </div>
     </div>

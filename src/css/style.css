@@ -46,3 +46,24 @@ html *::-webkit-scrollbar-thumb {
 .ce-card-docs p {
     margin-bottom: .3rem;
 }
+
+.proxygroup-policy-list-row,
+#proxygroup-select-list {
+    margin-left: -4px;
+    margin-right: -4px;
+}
+
+#proxygroup-httpcheck-container {
+    display: none;
+}
+
+.proxygroup-policy-label,
+.proxygroup-select-label {
+    cursor: pointer;
+}
+
+.proxygroup-policy-input:checked+.proxygroup-policy-label,
+.proxygroup-select-input:checked+.proxygroup-select-label {
+    color: white;
+    background-color: #007bff;
+}
