@@ -116,4 +116,11 @@ ${selectedProxy.join('\n')}
 
         $('#ce-modal-proxygroup').modal('hide');
     })
+
+    document.getElementById('ce-proxygroup-btn-continue').addEventListener('click', () => {
+        setLS('clashEditor:config:proxygroup', proxygroupCodeEditor.getValue());
+        setTimeout(() => {
+            window.location.pathname = '/rule'
+        }, 500)
+    })
 })()
