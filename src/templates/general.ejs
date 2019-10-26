@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<% const PAGE = 'general'; %>
+
+<head>
+    <%- include('includes/head') %>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.3.0/themes/prism-vs.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror@5.49.2/lib/codemirror.css">
+</head>
+
+<body class="sk-bg-gray">
+    <%- include('includes/github-corner') %>
+    <%- include('includes/navbar') %>
+    <div class="container sk-my-8">
+        <%- include('includes/steps', { PAGE }) %>
+        <div class="card sk-center">
+            <div class="card-body">
+                <h2 class="h4 text-center sk-mb-4">General 配置</h2>
+                <div class="text-justify ce-card-docs">
+                    <p>在这里，您需要填充 Clash 的 General 部分配置。</p>
+                    <p><code>port</code>，<code>socks-port</code> 和 <code>allow-lan</code> 是必须的。如果需要启用透明代理，还需要指定 <code>redir-port</code>。</p>
+                    <pre><code class="language-yaml"># HTTP 端口
+port: 7890
+# SOCKS5 端口
+socks-port: 7891
+
+# 透明代理端口
+# redir-port: 7892
+
+# 是否允许局域网连接
+allow-lan: false</code></pre>
+
+                    <p>其它可选的 General 配置如 <code>dns</code>，<code>external-controller</code>，<code>secret</code>，<code>cfw-bypass</code> 等，请根据自己需要、参考 <a href="https://github.com/Dreamacro/clash#config" target="_blank" rel="external noopenner noreferrer nofollow">Dreamacro 提供的样例</a> 自行添加。</p>
+                </div>
+            </div>
+        </div>
+        <div class="card sk-center sk-mt-4">
+            <div class="card-body">
+                <div class="card" id="general-editor"></div>
+                <br>
+                <p id="msg">在编辑器中输入 General 配置后，必须点击「检查」按钮，才可以「继续」下一步。</p>
+            </div>
+            <div class="card-footer text-muted">
+                <div class="text-right">
+                    <button id="ce-general-btn-validate" class="btn btn-success sk-px-4">检查</button>
+                    <a id="ce-general-btn-continue" href="/" class="btn btn-primary sk-px-4 disabled" disabled>继续</a>
+                    <a href="/" class="btn btn-dark sk-px-4">取消</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('includes/modal') %>
+    <%- include('includes/footer') %>
+    <%- include('includes/footer_for_editor') %>
+    <script src="/js/<%= PAGE %>.js"></script>
+</body>
+
+</html>
