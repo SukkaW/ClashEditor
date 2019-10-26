@@ -67,7 +67,7 @@ const devJS = () => gulp.src('src/js/*.js')
     .pipe(gulp.dest('dist/js'));
 
 const buildCSS = () => gulp.src('src/css/*.css')
-    .pipe(autoprefixer({ browsers: targetBrowser }))
+    .pipe(autoprefixer({ overrideBrowserslist: targetBrowser }))
     .pipe(cleancss())
     .pipe(gulp.dest('dist/css'));
 

@@ -1,0 +1,23 @@
+language: node_js
+node_js:
+  - node
+install:
+  - yarn global add gulp-cli
+  - yarn install
+script:
+  - gulp build
+branches:
+  only:
+    - master
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
+  target_branch: gh-pages
+  email: $GITHUB_EMAIL
+  name: $GITHUB_USER
+  local-dir: dist
+  keep-history: true
+  fqdn: clash.skk.moe
+  on:
+    branch: master
