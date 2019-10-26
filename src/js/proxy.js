@@ -3,8 +3,6 @@
     const msgEl = document.getElementById('msg');
     const proxyConfigLS = localStorage.getItem('clashEditor:config:proxy');
 
-    const getValue = (elId) => document.getElementById(elId).value;
-
     const proxyCodeEditor = CodeMirror(document.getElementById('proxy-editor'), {
         lineNumbers: true,
         mode: 'yaml'

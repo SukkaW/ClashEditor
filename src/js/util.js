@@ -1,3 +1,5 @@
+window.ClashEditor = {};
+
 function Modal(title = '', body = '', footer = '') {
     document.getElementById('modal-title').innerHTML = title;
     document.getElementById('modal-body').innerHTML = body;
@@ -19,3 +21,5 @@ function setLS(key, value) {
         )
     }
 }
+
+const getValue = (elId) => document.getElementById(elId).value;
