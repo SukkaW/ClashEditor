@@ -33,9 +33,10 @@
                 </div>
                 <div class="card sk-center sk-mt-4">
                     <div class="card-body">
-                        <button class="btn btn-info sk-px-4 sk-m-1" data-toggle="modal" data-target="#ss-helper">Shadowsocks 添加向导</button>
-                        <button class="btn btn-info sk-px-4 sk-m-1" data-toggle="modal" data-target="#vmess-helper">Vmess 添加向导</button>
-                        <button class="btn btn-info sk-px-4 sk-m-1" data-toggle="modal" data-target="#online-helper">Clash 托管配置 添加向导</button>
+                        <button class="btn btn-info sk-m-1" data-toggle="modal" data-target="#ss-helper">Shadowsocks 添加向导</button>
+                        <button class="btn btn-info sk-m-1" data-toggle="modal" data-target="#vmess-helper">Vmess 添加向导</button>
+                        <button class="btn btn-info sk-m-1" data-toggle="modal" data-target="#online-helper">Clash 托管配置 添加向导</button>
+                        <button class="btn btn-info sk-m-1" data-toggle="modal" data-target="#surge-helper">Surge.ini 添加向导</button>
                     </div>
                 </div>
                 <div class="card sk-center sk-mt-4">
@@ -259,6 +260,29 @@
                 </div>
                 <div class="modal-footer">
                     <button id="ce-proxy-btn-import-online" type="button" class="btn btn-primary">导入</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="surge-helper" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-title">Surge ini 添加向导</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="modal-body">
+                    <p>在下面的文本框中粘入 Surge 的 ini 格式配置文件</p>
+                    <form id="surge-form" autocomplete="off">
+                        <textarea class="form-control text-monospace sk-font-14" id="surge-ini-textarea" rows="30"></textarea>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button form="surge-form" type="submit" class="btn btn-primary">确认</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
                 </div>
             </div>

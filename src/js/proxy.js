@@ -140,6 +140,42 @@
             })
     })
 
+    document.getElementById('surge-form').addEventListener('submit', (evt) => {
+        evt.preventDefault();
+        const proxies = [];
+        const proxyObj = parseIni(getValue('surge-ini-textarea')).Proxy;
 
+        for (const [name, data] of Object.entries(proxyObj)) {
+            const info = data.split(',');
+            if (info.length > 4 && info[5].includes('SSEncrypt.module')) {
+                proxies.push({
+                    name,
+                    type: 'ss',
+                    server: info[1],
+                    port: info[2],
+                    cipher: info[3],
+                    password: info[4],
+                    udp: true
+                })
+            }
+        }
+
+        let value = `Proxy:\n`
+
+        for (const proxy of proxies) {
+            value += `- name: "${proxy.name}"
+  type: ss
+  server: ${proxy.server}
+  port: ${proxy.port}
+  cipher: ${proxy.cipher}
+  password: "${proxy.password}"
+  udp: true
+`
+        }
+
+        proxyCodeEditor.setValue(value);
+        document.getElementById('surge-form').reset();
+        $('#surge-helper').modal('hide')
+    })
 
 })();
