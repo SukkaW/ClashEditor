@@ -1,6 +1,7 @@
 window.ClashEditor.select = ['DIRECT', 'REJECT'];
 
 (() => {
+    const msgEl = document.getElementById('msg');
     const proxyConfigLS = localStorage.getItem('clashEditor:config:proxy');
     const proxygroupConfigLS = localStorage.getItem('clashEditor:config:proxygroup');
     const updateProxyGroupList = () => {
@@ -117,10 +118,23 @@ ${selectedProxy.join('\n')}
         $('#ce-modal-proxygroup').modal('hide');
     })
 
-    document.getElementById('ce-proxygroup-btn-continue').addEventListener('click', () => {
-        setLS('clashEditor:config:proxygroup', proxygroupCodeEditor.getValue());
-        setTimeout(() => {
-            window.location.pathname = '/rule'
-        }, 500)
+
+    document.getElementById('ce-proxygroup-btn-validate').addEventListener('click', () => {
+        try {
+            jsyaml.load(proxygroupCodeEditor.getValue());
+            setLS('clashEditor:config:proxygroup', proxygroupCodeEditor.getValue());
+            msgEl.innerHTML = `<span class="text-success">Proxy Group 检查通过！</span>`;
+            document.getElementById('ce-proxygroup-btn-continue').classList.remove('disabled');
+            document.getElementById('ce-proxygroup-btn-continue').removeAttribute('disabled');
+            document.getElementById('ce-proxygroup-btn-continue').setAttribute('href', '/rule');
+        } catch (err) {
+            Modal(
+                '这看起来不太正常',
+                `<p>Clash Editor 似乎不能解析您提交的 YAML 内容</p>
+                <p>报错信息如下所示：</p>
+                <p><code>${err}</code></p>
+                <p>如果您认为这不是您的问题，请在 Clash Editor 的 GitHub 上提交一条 issue，并在 issue 中附上报错信息以供调试</p>`
+            )
+        }
     })
 })()

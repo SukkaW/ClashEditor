@@ -28,9 +28,10 @@
                         });
 
                         setLS('clashEditor:config:proxy', proxyCodeEditor.getValue());
-                        msgEl.innerHTML = `<span class="text-success">您的 Proxy 配置符合要求，您可以「继续」下一步了</span>`;
+                        msgEl.innerHTML = `<span class="text-success">Proxy 配置检查通过！</span>`;
                         document.getElementById('ce-proxy-btn-continue').classList.remove('disabled');
                         document.getElementById('ce-proxy-btn-continue').removeAttribute('disabled');
+                        document.getElementById('ce-proxy-btn-continue').setAttribute('href', '/proxygroup');
                     } catch (proxyType) {
                         Modal(
                             '您的 Proxy 配置不符合要求！',
@@ -52,7 +53,7 @@
         } catch (err) {
             Modal(
                 '这看起来不太正常',
-                `<p>Clash Editor 不能解析您提交的 YAML 内容</p>
+                `<p>Clash Editor 似乎不能解析您提交的 YAML 内容</p>
                 <p>报错信息如下所示：</p>
                 <p><code>${err}</code></p>
                 <p>如果您认为这不是您的问题，请在 Clash Editor 的 GitHub 上提交一条 issue，并在 issue 中附上报错信息以供调试</p>`
