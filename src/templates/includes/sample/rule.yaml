@@ -1,0 +1,14 @@
+Rule:
+- DOMAIN-SUFFIX,google.com,[策略组的名称]
+- DOMAIN-KEYWORD,google,[策略组的名称]
+- DOMAIN,google.com,[策略组的名称]
+- DOMAIN-SUFFIX,ad.com,REJECT
+- IP-CIDR,127.0.0.0/8,DIRECT
+# rename SOURCE-IP-CIDR and would remove after prerelease
+- SRC-IP-CIDR,192.168.1.201/32,DIRECT
+- GEOIP,CN,DIRECT
+- DST-PORT,80,DIRECT
+- SRC-PORT,7777,DIRECT
+# FINAL would remove after prerelease
+# you also can use `FINAL,Proxy` or `FINAL,,Proxy` now
+- MATCH,[策略组的名称]

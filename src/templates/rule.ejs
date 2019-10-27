@@ -26,20 +26,7 @@
                     <p>在这里，您需要填充 Clash 的规则部分配置。注意规则配置第一行必须为 <code>Rule:</code>。</p>
                     <p>Clash 可以通过域名（<code>DOMAIN-SUFFIX</code> <code>DOMAIN-KEYWORD</code> <code>DOMAIN</code>）、目标 IP（<code>IP-CIDR</code>）、来源 IP（<code>SRC-IP-CIDR</code>）、目标端口（<code>DST-PORT</code>）、来源端口（<code>SRC-PORT</code>）和目标国家（<code>GEOIP</code>）匹配请求，具体如何使用请参考下面提供的样例。</p>
                     <br>
-                    <pre><code class="language-yaml">Rule:
-- DOMAIN-SUFFIX,google.com,[策略组的名称]
-- DOMAIN-KEYWORD,google,[策略组的名称]
-- DOMAIN,google.com,[策略组的名称]
-- DOMAIN-SUFFIX,ad.com,REJECT
-- IP-CIDR,127.0.0.0/8,DIRECT
-# rename SOURCE-IP-CIDR and would remove after prerelease
-- SRC-IP-CIDR,192.168.1.201/32,DIRECT
-- GEOIP,CN,DIRECT
-- DST-PORT,80,DIRECT
-- SRC-PORT,7777,DIRECT
-# FINAL would remove after prerelease
-# you also can use `FINAL,Proxy` or `FINAL,,Proxy` now
-- MATCH,[策略组的名称]</code></pre>
+                    <pre><code class="language-yaml"><%- include('includes/sample/rule.yaml') %></code></pre>
                 </div>
             </div>
         </div>
