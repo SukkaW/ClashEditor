@@ -1,4 +1,4 @@
-(() => {
+((document, localStorage) => {
     const generalConfigLS = localStorage.getItem('clashEditor:config:general') || '';
     const proxyConfigLS = localStorage.getItem('clashEditor:config:proxy') || '';
     const proxygroupConfigLS = localStorage.getItem('clashEditor:config:proxygroup') || '';
@@ -39,4 +39,4 @@ ${ruleConfigLS}`
             `Clash Editor 已经清除了您浏览器中保存的 General、Proxy、Proxy Group、Rule 配置！在您下次编辑时这些配置将不会自动恢复！`
         );
     })
-})();
+})(document, localStorage);

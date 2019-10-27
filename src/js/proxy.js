@@ -1,4 +1,4 @@
-(() => {
+((document, localStorage, CodeMirror) => {
     let proxyConfig;
     const msgEl = document.getElementById('msg');
     const proxyConfigLS = localStorage.getItem('clashEditor:config:proxy');
@@ -178,4 +178,4 @@
         $('#surge-helper').modal('hide')
     })
 
-})();
+})(document, localStorage, CodeMirror);

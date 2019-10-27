@@ -1,4 +1,4 @@
-(() => {
+((document, localStorage, CodeMirror, window) => {
     const msgEl = document.getElementById('msg');
     const proxygroupConfigLS = localStorage.getItem('clashEditor:config:proxygroup');
     const ruleLS = localStorage.getItem('clashEditor:config:rule');
@@ -76,4 +76,4 @@
             )
         }
     })
-})();
+})(document, localStorage, CodeMirror, window);

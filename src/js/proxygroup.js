@@ -1,6 +1,6 @@
 window.ClashEditor.select = ['DIRECT', 'REJECT'];
 
-(() => {
+((document, localStorage, CodeMirror, window) => {
     const msgEl = document.getElementById('msg');
     const proxyConfigLS = localStorage.getItem('clashEditor:config:proxy');
     const proxygroupConfigLS = localStorage.getItem('clashEditor:config:proxygroup');
@@ -137,4 +137,4 @@ ${selectedProxy.join('\n')}
             )
         }
     })
-})()
+})(document, localStorage, CodeMirror, window)

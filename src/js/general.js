@@ -1,4 +1,4 @@
-(() => {
+((document, localStorage, CodeMirror) => {
     let generalConfig;
     const msgEl = document.getElementById('msg');
     const generalConfigLS = localStorage.getItem('clashEditor:config:general');
@@ -45,4 +45,4 @@
             )
         }
     })
-})();
+})(document, localStorage, CodeMirror);
